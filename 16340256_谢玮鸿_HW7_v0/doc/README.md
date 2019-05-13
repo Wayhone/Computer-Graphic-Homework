@@ -205,6 +205,8 @@ void main()
 最终得出的结果显示如下：  
 ![result](result.png)
 
+**更多演示结果请看演示视频**
+
 ### **(五)实现光源在正交/透视两种投影下的Shadowing Mapping**  
 在渲染深度贴图的时候，正交(Orthographic)和投影(Projection)矩阵之间有所不同。正交投影矩阵并不会将场景用透视图进行变形，所有视线/光线都是平行的，这使它对于定向光来说是个很好的投影矩阵。然而透视投影矩阵，会将所有顶点根据透视关系进行变形，结果因此而不同。  
 ![compare](shadow_mapping_projection.png)  
