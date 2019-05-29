@@ -6,14 +6,14 @@
 
 ### Basic: 
 > 1. 实现方向光源的Shadowing Mapping:  
-- 要求场景中至少有一个object和一块平面(用于显示shadow)
-- 光源的投影方式任选其一即可  
-- 在报告里结合代码，解释Shadowing Mapping算法  
-2. 修改GUI
+> - 要求场景中至少有一个object和一块平面(用于显示shadow)
+> - 光源的投影方式任选其一即可  
+> - 在报告里结合代码，解释Shadowing Mapping算法  
+> 2. 修改GUI
 
 ### Bonus:
 > 1. 实现光源在正交/透视两种投影下的Shadowing Mapping  
-2. 优化Shadowing Mapping (可结合References链接，或其他方法。优化方式越多越好，在报告里说明，有加分)
+> 2. 优化Shadowing Mapping (可结合References链接，或其他方法。优化方式越多越好，在报告里说明，有加分)
 
 #### **（一）生成深度贴图(Depth Map)**  
 深度贴图是从光的透视图里渲染的**深度纹理**，用它计算阴影。
