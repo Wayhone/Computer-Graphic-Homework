@@ -15,11 +15,11 @@
 
 #### **（一）Bezier曲线**
 
-以一个三阶Bezier曲线为例，说明它的绘制过程。该三阶曲线包括四个控制点，分别为$P_0$, $P_1$, $P_2$, $P_3$  
+以一个三阶Bezier曲线为例，说明它的绘制过程。该三阶曲线包括四个控制点，分别为 P0, P1, P2, P3  
 
 ![Bezier](https://user-gold-cdn.xitu.io/2018/8/28/16580bb43ffa1be4?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
 
-首先，四个控制点先后连接，形成3段线段，即$P_0P_1$, $P_1P_2$, $P_2P_3$。设参数 $t \in [0,1]$，在三条线段上分别选择一个点$P_k'$使得$P_kP_k' = tP_kP_{k+1}$。如下图所示：  
+首先，四个控制点先后连接，形成3段线段，即P0P1, P1P2, P2P3。设参数 t ∈ [0,1]，在三条线段上分别选择一个点 Pk' 使得 PkPk' = tPkP(k+1)。如下图所示：  
 
 ![Bezier2](https://user-gold-cdn.xitu.io/2018/8/28/16580bc4e1340d75?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
 
@@ -31,9 +31,9 @@
 
 ![BezierDemo](https://upload.wikimedia.org/wikipedia/commons/d/db/B%C3%A9zier_3_big.gif)
 
-给定点$P_0$, $P_1$, ... , $P_n$，一般Bezier曲线可以表示为：
+给定点 P0, P1, ... , Pn，一般Bezier曲线可以表示为：
 
-$B(t) = \sum\limits_{i=0}^nP_i {n\choose i} t^i(1-t)^{n-i}$
+![](https://wikimedia.org/api/rest_v1/media/math/render/svg/04819d6d335226625dfb2e401355e70ea7996d7c)
 
 #### **（二）实现捕捉鼠标移动和点击**
 
@@ -110,7 +110,7 @@ if (pointSet.size() > 1)
 
 由于对于不同的 $t \in [0,1]$，二项式系数都是一样的，因此先计算好二项式系数再带入参数t计算会更快。求二项式系数有很多高效的实现方法，但是考虑到用户输入的点数n不会太大，因此我使用直接计算的方法，减少复杂性。
 
-计算好${n\choose i} \quad i=0,1,...,n$之后，计算$t \in [0,1]$对应的$B(t) = \sum\limits_{i=0}^nP_i {n\choose i} t^i(1-t)^{n-i}$，然后将点绘制出，即得到了Bezier曲线。
+计算好二项式系数之后，计算 t ∈ [0,1] 对应的 B(t)，然后将点绘制出，即得到了Bezier曲线。
 
 ``` c++
 void drawBezierCurve(const int &shaderProgram, ImVec4 color) {
@@ -142,9 +142,12 @@ void drawBezierCurve(const int &shaderProgram, ImVec4 color) {
 }
 ```
 
+绘制效果如下：  
+![BezierDemo](./demo.png)
+
 #### **（四）动态呈现Bezier曲线的生成过程**  
 
-动态呈现生成过程实质上就是一个递归画线段的过程。输入一组点坐标points，以及$t \in [0,1]$，求出参数t对应的新的一组点的坐标new_points，将邻近的两个点绘制成线段，然后以new_points为输入（如果点的数量不为1的话），递归调用该函数。
+动态呈现生成过程实质上就是一个递归画线段的过程。输入一组点坐标points，以及  t ∈ [0,1]，求出参数t对应的新的一组点的坐标new_points，将邻近的两个点绘制成线段，然后以new_points为输入（如果点的数量不为1的话），递归调用该函数。
 
 ``` c++
 void drawTangent(const int &shaderProgram, vector<Point> points, float t, ImVec4 color)
